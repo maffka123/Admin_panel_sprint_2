@@ -1,39 +1,74 @@
-# Техническое задание
+# Admin panel for online-cinema
 
-На прошлых этапах мы получили 2 улучшения в системе:
-- Новая архитектура базы данных,
-- Динамическое обновление данных между базой данных и поисковым сервисом.  
+## To start the panel you need to do the following steps:
 
-Необходимо разработать сервис, который позволит создавать и редактировать сущности из подготовленной схемы. 
+* install requirements.txt in your python environment
 
-Основные этапы:
-1. Создать структуру проекта Django.
-2. Перенести в `models` схему, разработанную на ранних этапах.
-3. Сравнить код, который был написан руками, c кодом, который генерирует Django автоматически,
-4. Добавить механизмы работы с `models` для контент-менеджера.
+* create environment variable ```postgres``` with connection data,
+e.g. ```postgresql://user:pass@localhost:5432/movies_database```
+
+* start postgres from docker (this is suggestion for mac):
+
+```bash
+sudo docker run -d --rm \
+  --name postgres \
+  -p 5432:5432 \
+  -e PGDATA=/var/lib/postgresql/data/pgdata \
+  -v /Users/maria/Desktop/ya_mid_level_dev/ya_proj/Admin_panel_sprint_1:/var/lib/postgresql/data \
+  -e POSTGRES_PASSWORD=vfifif \
+  postgres:13
+```
+
+* Migrate sqlite db to this postgres:
+
+    * Create schema:
+    ```bash
+    docker exec -it postgres bash
+    psql -U postgres
+    ```
+
+    and the copypaste content of schema_design/ya_postgres_schema.psql
+
+    * Migrate:
+    ```bash
+    python sqlite_to_postgres/load_data.py
+    ```
+
+* Change directory
+
+```bash
+cd movies_admin
+```
+
+* Make migrations:
+
+    - Rename migrations folder to ex. .migrations
+    - run ```./manage.py migrate```
+    - Rename migrations back
+    - ```./manage.py migrate movies 0001_initial --fake```
+    - ```./manage.py migrate movies```
+
+* Create admin:
+```bash
+./manage.py createsuperuser
+```
+
+* Run Django admin:
+```bash
+cd movies_admin
+./manage.py runserver
+```
+
+* To generate random data run:
+```bash
+./manage.py setup_test_data
+```
+
+## The final view of the admin panel, should be like that
+
+![Alt text](admin_panel.png?raw=true "Optional Title")
 
 
-## Основные сущности
 
-Основные сущности, которые должны присутствовать в сервисе.
 
-Список полей для каждой сущности является обязательным, но не ограничивается строго — возможно, в процессе вы почувствуете необходимость что-то добавить.
 
-- Пользователь — электронная почта, логин, пароль, дата регистрации, система прав.
-
-- Фильм – заголовок, содержание, дата создания, возрастной ценз, режиссеры, актеры, сценаристы, жанры, ссылка на файл.
-- Сериал - заголовок, содержание, даты создания, режиссеры, актеры, сценаристы, жанры, ссылка на файл.
-
-- Актер — Имя, фамилия, его фильмы
-- Режиссер — Имя, фамилия, его фильмы
-- Сценарист — Имя, фамилия, его фильмы
-- Жанр — Описание
-
-## Требования к объему данных
-
-Эти требования необходимы для проверки работы индексов в вашей базе. При тестировании приложения с небольшим количеством записей мы не сможем проверить, правильно ли выполнена часть задания с индексами.
-
-- Пользователи > 1 000.
-- Фильмы > 1 000 000.
-- Сериалы > 200 000.
-- Жанры > 10 000.

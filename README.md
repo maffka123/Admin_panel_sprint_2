@@ -87,8 +87,8 @@ cd movies_admin
 
 * admin panel: ``http://localhost:8000/admin/``
 
-    user: masha
-    password: vfif
+    user: test
+    password: Thisispass1
 
 * api: 
     - ``http://localhost:8000/api/v1/movies/`` will returrn first page with all movies

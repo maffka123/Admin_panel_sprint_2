@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
+# macos issue, see: https://stackoverflow.com/questions/35557129/css-not-loading-wrong-mime-type-django
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 
@@ -169,4 +173,5 @@ INTERNAL_IPS = [
     '127.0.0.1',
     # ...
 ]
+
 

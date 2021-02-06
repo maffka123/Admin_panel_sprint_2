@@ -82,3 +82,15 @@ cd movies_admin
 
 ![Alt text](admin_panel.png?raw=true "Optional Title")
 
+
+## Use service:
+
+* admin panel: ``http://localhost:8000/admin/``
+
+    user: masha
+    password: vfif
+
+* api: 
+    - ``http://localhost:8000/api/v1/movies/`` will returrn first page with all movies
+    - ``http://localhost:8000/api/v1/movies?page=2`` specify page (50 movies per page)
+    - ``http://localhost:8000/api/v1/movies/01473f42-3ae0-4570-ab53-98042d655749/`` find moview by its uuid

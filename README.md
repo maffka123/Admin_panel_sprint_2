@@ -9,10 +9,14 @@ The panel is build according to the followitn schema:
 
 ``docker-compose up -d``
 
-<span style="color:red">Attention! It was testet only on Mac, make sure that Docker has permissions for the folder,
-where you run it</span>
+!-------------------------------------------------------------------------------------------!
+
+!Attention! It was tested only on Mac, make sure that Docker has permissions for the folder,
+where you run it!
 
 for details see: https://stackoverflow.com/questions/58482352/operation-not-permitted-from-docker-container-logged-as-root
+
+!-------------------------------------------------------------------------------------------!
 
 
 ## To start the panel by yourself from the mysql dump you need to do the following:

@@ -45,7 +45,7 @@ sudo docker run -d --rm \
     docker exec -it postgres psql -U postgres
     ```
 
-    and the copypaste content of ya_postgres_schema.psql
+    and the copy-paste content of ya_postgres_schema.psql
 
     * Migrate:
     ```bash

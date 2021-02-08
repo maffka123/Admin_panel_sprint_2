@@ -10,6 +10,9 @@ The panel is build according to the followitn schema:
 ``docker-compose up -d``
 
 wait a bit until you go to browser, there is a delay to wait until db is ready
+if waiting did not help, it means that admin still started before postgres, run it all again and wait 30 s
+``docker-compose down``
+``docker-compose up -d``
 
 !-------------------------------------------------------------------------------------------!
 

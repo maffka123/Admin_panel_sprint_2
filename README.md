@@ -9,6 +9,8 @@ The panel is build according to the followitn schema:
 
 ``docker-compose up -d``
 
+wait a bit until you go to browser, there is a delay to wait until db is ready
+
 !-------------------------------------------------------------------------------------------!
 
 !Attention! It was tested only on Mac, make sure that Docker has permissions for the folder,

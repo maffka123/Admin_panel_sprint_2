@@ -18,10 +18,17 @@ from django.contrib import admin
 from django.urls import path, include
 import debug_toolbar
 from django.conf import settings
+import os
 
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
-    path('__debug__/', include(debug_toolbar.urls)),
-]
+env = os.getenv('DJANGO_SETTINGS_MODULE')
+if env is None or 'dev' in env:
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('api/', include('api.urls')),
+        path('__debug__/', include(debug_toolbar.urls)),
+    ]
+else:
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('api/', include('api.urls')),
+    ]

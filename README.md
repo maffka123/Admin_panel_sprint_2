@@ -34,11 +34,11 @@ e.g. ```postgresql://user:pass@localhost:5432/movies_database```
 * start postgres from docker (this is suggestion for mac):
 
 ```bash
-sudo docker run -d --rm \
+docker run -d --rm \
   --name postgres \
   -p 5432:5432 \
   -e PGDATA=/var/lib/postgresql/data/pgdata \
-  -v .:/var/lib/postgresql/data \
+  -v ${PWD}:/var/lib/postgresql/data \
   -e POSTGRES_PASSWORD=vfifif \
   postgres:13
 ```

@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
+from dotenv import load_dotenv
+import os
+
+basedir = os.getcwd()
+load_dotenv(dotenv_path=f'{basedir}/../src/.env')
+
 # macos issue, see: https://stackoverflow.com/questions/35557129/css-not-loading-wrong-mime-type-django
 import mimetypes
 mimetypes.add_type("text/css", ".css", True)
@@ -24,7 +30,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^^y5u%4cch6a-)nqu1mqc0&k9d6*^inq^-4*ug2uwj^a)%n$k2'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -43,7 +49,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'movies',
     'django_extensions',
-    'debug_toolbar',
 ]
 
 CONN_MAX_AGE = 20
@@ -78,24 +83,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'OPTIONS': {
-            'options': '-c search_path=content'
-        },
-        'NAME': 'movies_database',
-        'USER': 'postgres',
-        'PASSWORD': 'vfifif',
-        'HOST': 'postgres',
-        'PORT': '5432',
-    }
-}
 
 
 # Password validation

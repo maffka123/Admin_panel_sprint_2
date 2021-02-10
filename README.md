@@ -16,7 +16,7 @@ if waiting did not help, it means that admin still started before postgres, run 
 
 !-------------------------------------------------------------------------------------------!
 
-!Attention! It was tested only on Mac, make sure that Docker has permissions for the folder,
+!Attention! On Mac, make sure that Docker has permissions for the folder,
 where you run it!
 
 for details see: https://stackoverflow.com/questions/58482352/operation-not-permitted-from-docker-container-logged-as-root

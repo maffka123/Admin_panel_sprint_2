@@ -7,6 +7,16 @@ The panel is build according to the followitn schema:
 
 ## To start the service from docker:
 
+You would need an .env file in src/.env, with the followingvaruables:
+```
+SECRET_KEY = 'verysecretkay'
+PS_NAME = 'movies_database'
+PS_USER ='postgres'
+PS_PASSWORD = 'yourpass'
+PS_HOST = 'postgres'
+PS_PORT = '5432'
+```
+
 ``docker-compose up -d``
 
 wait a bit until you go to browser, there is a delay to wait until db is ready

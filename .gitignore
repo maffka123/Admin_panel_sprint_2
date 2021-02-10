@@ -39,6 +39,7 @@ coverage.xml
 
 # dotenv
 .env
+#src/.env # for education purpose
 
 # virtualenv
 venv/

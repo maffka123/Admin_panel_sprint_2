@@ -55,3 +55,4 @@ doc.html
 !.gitkeep
 
 pgdata/
+static/

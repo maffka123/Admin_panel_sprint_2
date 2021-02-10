@@ -16,12 +16,12 @@ Including another URLconf
 from __future__ import absolute_import
 from django.contrib import admin
 from django.urls import path, include
-import debug_toolbar
 from django.conf import settings
 import os
 
 env = os.getenv('DJANGO_SETTINGS_MODULE')
 if env is None or 'dev' in env:
+    import debug_toolbar
     urlpatterns = [
         path('admin/', admin.site.urls),
         path('api/', include('api.urls')),

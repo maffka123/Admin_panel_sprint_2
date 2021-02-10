@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "yes\n" | movies_admin/manage.py collectstatic
+
 # Just because admin needs to wait until db is built
 result=$(python <<EOF
 from sqlalchemy import create_engine
@@ -17,4 +19,4 @@ EOF
 )
 cd movies_admin
 gunicorn --bind 0.0.0.0:8000 config.wsgi
-# ./manage.py runserver # use for debugging, gunicorn does not print all logs
+#./manage.py runserver # use for debugging, gunicorn does not print all logs

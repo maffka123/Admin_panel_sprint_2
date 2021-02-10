@@ -2,7 +2,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 import uuid
-from django_print_sql import print_sql
 
 # --------------------Movies
 class FilmWorkGenre(models.Model):

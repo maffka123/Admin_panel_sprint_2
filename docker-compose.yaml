@@ -19,12 +19,14 @@ services:
       - postgres
     depends_on:
       - postgres
+    volumes:
+      - static:/home/static
   nginx:
     image: nginx:1.19.2
     volumes:
       - ./src/nginx.conf:/etc/nginx/nginx.conf
       - ./src/configs:/etc/nginx/conf.d
-      - "./static:/var/www/static/"
+      - static:/var/www/static/
     depends_on:
       - admin-panel
     links:
@@ -33,3 +35,4 @@ services:
       - "80:80"
 volumes:
   pgdata:
+  static:

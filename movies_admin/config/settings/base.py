@@ -16,7 +16,10 @@ from dotenv import load_dotenv
 import os
 
 basedir = os.getcwd()
-load_dotenv(dotenv_path=f'{basedir}/../src/.env')
+if os.path.isfile(f'{basedir}/../src/.env'):
+    load_dotenv(dotenv_path=f'{basedir}/../src/.env')
+else:
+    load_dotenv(dotenv_path=f'{basedir}/src/.env')
 
 # macos issue, see: https://stackoverflow.com/questions/35557129/css-not-loading-wrong-mime-type-django
 import mimetypes
@@ -48,13 +51,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'movies',
-    'django_extensions',
 ]
 
 CONN_MAX_AGE = 20
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

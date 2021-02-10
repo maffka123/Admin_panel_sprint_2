@@ -26,7 +26,7 @@ for details see: https://stackoverflow.com/questions/58482352/operation-not-perm
 
 ## To start the panel by yourself from the mysql dump you need to do the following:
 
-* install requirements.txt in your python environment
+* install movies_admin/requirements/dev.txt in your python environment
 
 * create environment variable ```postgres``` with connection data,
 e.g. ```postgresql://user:pass@localhost:5432/movies_database```
@@ -89,7 +89,7 @@ cd movies_admin
 
 ## The final view of the admin panel, should be like that
 
-![Alt text](admin_panel.png?raw=true "Optional Title")
+![Alt text](images/admin_panel.png?raw=true "Optional Title")
 
 
 ## Use service:

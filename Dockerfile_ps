@@ -1,3 +1,0 @@
-FROM postgres:13
-COPY ./src/psql.dump ./psql.dump
-COPY ./src/init_docker_postgres.sh /docker-entrypoint-initdb.d/

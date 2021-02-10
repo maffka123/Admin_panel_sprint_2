@@ -2,48 +2,29 @@ version: '3'
 services:
   # postgres database from existing docker image
   postgres:
-    build:
-      context: .
-      dockerfile: Dockerfile_ps
+    image: postgres:13
     hostname: postgres
-    ports:
-      - 5432:5432
     expose:
       - 5432
     volumes:
+      - "./db:/docker-entrypoint-initdb.d"
       - ".:/var/lib/postgresql/data"
     environment:
       POSTGRES_PASSWORD: "vfifif"
       PGDATA: "/var/lib/postgresql/data/pgdata" # this is special for mac, otherwise it does not run (permissions issues)
- #   healthcheck: # need to wait until db movies_database is created
- #     test: ["CMD", "wait", "grep?"] # But i don't know which bash command will be the best :( i just use sleep
- #     interval: 1m
- #     timeout: 10s
- #     retries: 3
- #     start_period: 40s
-  # My container with admin panel served by django
+  # django admins panel
   admin-panel:
     build: .
-    ports:
-      - 8000:8000
-    volumes:
-      - ".:/home"
-    environment:
-      DJANGO_SETTINGS_MODULE: "config.settings.production"
-    entrypoint: ["src/entrypoint.sh"]
     links:
       - postgres
     depends_on:
       - postgres
-#      postgres:
-#        condition: service_healthy
-  # ngnix server
   nginx:
     image: nginx:1.19.2
     volumes:
       - ./src/nginx.conf:/etc/nginx/nginx.conf
       - ./src/configs:/etc/nginx/conf.d
-      - ".:/home"
+      - "./static:/var/www/static/"
     depends_on:
       - admin-panel
     links:

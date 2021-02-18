@@ -8,7 +8,7 @@ class FilmWorkGenre(models.Model):
     id = models.AutoField(primary_key=True, editable=False)
     movie = models.ForeignKey('FilmWork', models.CASCADE, related_name='movie_id', unique=False)
     genre = models.ForeignKey('Genre', models.CASCADE, db_column='genre_id', unique=False)
-    created_on = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'film_work_genre'
@@ -19,7 +19,7 @@ class FilmWorkPerson(models.Model):
     id = models.AutoField(primary_key=True, editable=False)
     movie = models.ForeignKey('FilmWork', models.CASCADE, unique=False)
     person = models.ForeignKey('Person', models.CASCADE, unique=False)
-    created_on = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'film_work_person'
@@ -29,7 +29,7 @@ class FilmWorkPerson(models.Model):
 class Genre(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(_('название'), max_length=100)
-    created_on = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = 'genre'
@@ -47,7 +47,7 @@ class FilmWork(models.Model):
     plot = models.TextField(_('описание'), blank=True, null=True)
     ratings = models.CharField(_('рейтинг'), max_length=100, blank=True, null=True)
     imdb_rating = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
-    created_on = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
     genre = models.ManyToManyField(Genre, through=FilmWorkGenre)
     people = models.ManyToManyField('Person', through=FilmWorkPerson)
 
@@ -112,7 +112,7 @@ class Person(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(_('name'), max_length=100)
     role = models.CharField(_('role'), max_length=100)
-    created_on = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
     movie = models.ManyToManyField(FilmWork, through=FilmWorkPerson)
 
     class Meta:

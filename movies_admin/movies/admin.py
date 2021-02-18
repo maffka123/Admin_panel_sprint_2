@@ -28,7 +28,7 @@ class SeparatePersonsForm(forms.ModelForm):
 class MovieAdmin(admin.ModelAdmin):
 
     # отображение полей в списке
-    list_display = ('title', 'ratings', 'created_on', 'actors', 'writers', 'director',
+    list_display = ('title', 'ratings', 'updated_at', 'actors', 'writers', 'director',
                     'film_creation_date', 'age_limit', 'link')
     def actors(self, obj):
         actors = FilmWork.objects.filter(people__role__iexact='actor', title=obj).values_list('people__name', flat=True)
@@ -135,7 +135,7 @@ class SeriesAdmin(admin.ModelAdmin):
         return ", ".join([a for a in director])
 
     # отображение полей в списке
-    list_display = ('title', 'ratings', 'created_on','actors', 'writers', 'director',
+    list_display = ('title', 'ratings', 'updated_at','actors', 'writers', 'director',
                     'film_creation_date', 'link')
 
 

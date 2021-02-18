@@ -4,9 +4,6 @@ CREATE DATABASE movies_database;
 CREATE SCHEMA content;
 SET search_path = content;
 
-CREATE SCHEMA content;
-SET search_path TO content;
-
 ---main table
 CREATE TABLE   film_work (
   id UUID PRIMARY KEY,

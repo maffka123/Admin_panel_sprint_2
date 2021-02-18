@@ -1,8 +1,12 @@
 # Admin panel for online cinema packed into docker
 
-The panel is build according to the followitn schema:
+The panel is build according to the following schema:
 
 ![all](images/all.png)
+
+ETL process, example for change in genres table:
+
+![etl](images/Postgres_in_Elasticsearch.jpg)
 
 
 ## To start the service from docker:

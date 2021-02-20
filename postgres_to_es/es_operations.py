@@ -1,9 +1,10 @@
 # nice explanation of sending data to ES: https://towardsdatascience.com/exporting-pandas-data-to-elasticsearch-724aa4dd8f62
-#TODO: prepare elasticsearch.yml, autoupdate index for faster search
+# TODO: prepare elasticsearch.yml, autoupdate index for faster search
 
-from elasticsearch import Elasticsearch, helpers
 import json
 import logging
+
+from elasticsearch import Elasticsearch, helpers
 
 logger = logging.getLogger()
 
@@ -19,7 +20,7 @@ class ES:
         :return: None
         """
         if not self.es.indices.exists(index='index'):
-            with open('{name}.json','r') as f:
+            with open('{name}.json', 'r') as f:
                 doc = json.load(f)
             res = self.es.index(index=name, id=1, body=doc)
             logger.info('%s was created: %s' % (name, {res['result']}))
@@ -61,8 +62,8 @@ class ES:
                 "_index": name,
                 "_type": "_doc",
                 "_source": line,
-                "_op_type": 'index', # kinda upsert
-                "_id": line['id'] # then update works, using the movies id
+                "_op_type": 'index',  # kinda upsert
+                "_id": line['id']  # then update works, using the movies id
             }
             for line in docs
         ]

@@ -21,6 +21,7 @@ services:
       - postgres
     volumes:
       - static:/home/static
+  # nginx server
   nginx:
     image: nginx:1.19.2
     volumes:
@@ -33,6 +34,26 @@ services:
       - admin-panel
     ports:
       - "80:80"
+  # elasticserch db
+  elastic_admin:
+    image: elasticsearch:7.7.0
+    environment:
+      discovery.type: single-node
+      # env for ui:
+      #http.cors.enabled: true
+      #http.cors.allow-origin: http://localhost:1358,http://127.0.0.1:1358
+      #http.cors.allow-headers: X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+      #http.cors.allow-credentials: true
+    expose:
+      - 9200
+      - 9300
+    depends_on:
+      - admin-panel
+    links:
+      - admin-panel
+    volumes:
+      - ./postgres_to_es:/home/postgres_to_es/
+      #- something to start them
 volumes:
   pgdata:
   static:
